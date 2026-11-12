@@ -1,0 +1,9 @@
+# Keep line endings stable: text is stored and checked out as LF, so the
+# build and the Bun/Vite tooling see identical files on every platform.
+* text=auto eol=lf
+
+# Never touch line endings in binary assets.
+*.woff2 binary
+*.png binary
+*.jpg binary
+*.ico binary
