@@ -1,10 +1,25 @@
-# Flappy Bird
+# FlappyCuba
+
+[![CI](https://github.com/cubanism/FlappyCuba/actions/workflows/ci.yml/badge.svg)](https://github.com/cubanism/FlappyCuba/actions/workflows/ci.yml)
 
 An illustrated, single-player arcade game. Anonymous visitors can play instantly;
 Freebuff users can put their best flight on the shared leaderboard. The game is
 branded **Little wings** with locally bundled Fraunces and DM Sans fonts, a coral
 bird, sculpted pipes, and a layered canvas landscape. No external image or font
 requests are required.
+
+Anonymous play works as soon as the dev server starts. The shared leaderboard
+and sign-in stay hidden until a Freebuff auth client and a D1 binding are
+configured, as described below.
+
+## Controls
+
+| Action | Input |
+| --- | --- |
+| Flap | Space, Arrow Up, pointer click, touch |
+| Pause / resume | Escape or P |
+| Sound | Opt-in button |
+| Fullscreen | Shown only where the browser supports it |
 
 ## Run
 
@@ -24,6 +39,8 @@ bun run typecheck
 bun test tests
 bun run build
 ```
+
+CI runs these same checks on every push and pull request (`.github/workflows/ci.yml`).
 
 Use the repository's pinned Bun when working inside the monorepo. This project is
 standalone, with its own lockfile; it does not import other repo packages.
@@ -104,6 +121,13 @@ Cloudflare preview should use a separate configuration with its own Worker name,
 real preview D1 binding, canonical origin, and registered public auth settings.
 Keep that preview identity outside the distributed template.
 
+### Releases
+
+The project is versioned with annotated Git tags (`v0.1.0`, …). A tag does not
+deploy anything: a release ships the source, while a Sites deployment serves the
+game. Physics changes also change replay verification, so note in the release
+notes when in-flight or previously verified scores can no longer be submitted.
+
 This template's entry in `templates/templates.json` is source only. Publishing the
 R2 template catalogue is the production rollout and requires the owner's explicit
 approval. A preview deployment does not publish or update that catalogue.
@@ -113,3 +137,7 @@ anonymous access, account isolation, cross-origin refusal, rate limiting, expire
 runs, duplicate submissions, and best-score preservation using real in-memory
 SQLite behind the D1 interface. Live provider consent and sign-out still need a
 registered client and an authenticated creator account to verify end to end.
+
+## License
+
+[MIT](LICENSE).
